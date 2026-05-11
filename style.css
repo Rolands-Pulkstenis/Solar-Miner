@@ -1,0 +1,94 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color:rgb(216, 216, 216);
+    margin:0;
+}
+nav{
+    display: flex;
+    width: 100vw;
+    background-color: rgb(154, 154, 154);
+    justify-content: space-between;
+    padding:25px;
+    align-items: center;
+    height: 5rem;
+}
+main{
+    margin:50px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+#mainAstroid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    border: 2px grey solid;
+    height: 60vh;
+}
+#astroid:hover{
+    cursor: pointer;
+}
+#shop{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 60vh;
+    border: 2px grey solid;
+    align-items: center;
+    justify-content: center;
+}
+#shop > h2{
+    display: flex;
+    justify-content: center;
+    border-bottom: grey 2px solid;
+    width: 100%;
+}
+#upgrades{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    height: 85%;
+}
+#upgrade1,
+#upgrade2,
+#upgrade3,
+#upgrade4,
+#upgrade5{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    font-size: 20px;
+    width: 90%;
+    padding: 10px 14px;
+    border: grey 2px solid;
+}
+#upgrade1 h3,
+#upgrade2 h3,
+#upgrade3 h3,
+#upgrade4 h3,
+#upgrade5 h3{
+    margin: 0;
+    white-space: nowrap;
+}
+#upgrade1 button,
+#upgrade2 button,
+#upgrade3 button,
+#upgrade4 button,
+#upgrade5 button{
+    margin-left: auto;
+    width: 70px;
+    height: 25px;
+}
+button:hover{
+    cursor: pointer;
+}

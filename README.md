@@ -1,7 +1,5 @@
 # Solar Miner ☀️⛏️
 
-A fun browser-based clicker game built with **HTML, CSS, and JavaScript** for a school project.
-
 In **Solar Miner**, players mine crystals from asteroids, purchase upgrades, automate mining systems, and explore deep space to become the ultimate galactic mining company.
 
 ---
@@ -13,8 +11,6 @@ In **Solar Miner**, players mine crystals from asteroids, purchase upgrades, aut
 - Passive income system
 - Unlock new planets and sectors
 - Animated UI effects
-- Save system using Local Storage
-- Responsive design for desktop and mobile
 
 ---
 
