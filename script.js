@@ -6,76 +6,139 @@ let upgradeCost2 = document.getElementById("cost2")
 let upgradeCost3 = document.getElementById("cost3")
 let upgradeCost4 = document.getElementById("cost4")
 let upgradeCost5 = document.getElementById("cost5")
+let upgradeCost6 = document.getElementById("cost6")
 const upgradebtn1 = document.getElementById("upgradeBtn1")
 const upgradebtn2 = document.getElementById("upgradeBtn2")
 const upgradebtn3 = document.getElementById("upgradeBtn3")
 const upgradebtn4 = document.getElementById("upgradeBtn4")
 const upgradebtn5 = document.getElementById("upgradeBtn5")
+const upgradebtn6 = document.getElementById("upgradeBtn6")
 let crystalCount = 0
 let passiveIncome = 0
-let perClick = 250
+let perClick = 1
 let cost1 = 50
 let cost2 = 250
 let cost3 = 750
 let cost4 = 2000
 let cost5 = 10000
+let cost6 = 100000
+let maxUpgrades = 25
+let maxUpgrades6 = 20
+let level1 = 0
+let level2 = 0
+let level3 = 0
+let level4 = 0
+let level5 = 0
+let level6 = 0
 let base = 0
 let droneDmg = 0
 let incomeMultiplier = 1
 
+function shortenNumbers(num) {
+    if (num >= 1000000000) {
+        return (num / 1000000000).toFixed(2) + "B"
+    }
+    if (num >= 1000000) {
+        return (num / 1000000).toFixed(2) + "M"
+    }
+    if (num >= 1000) {
+        return (num / 1000).toFixed(0) + "K"
+    }
+    return num
+}
+
+function updateUpgradeDisplay(costElement, cost, level, maxLevel) {
+    if (level >= maxLevel) {
+        costElement.innerHTML = "MAXED"
+        return
+    }
+
+    costElement.innerHTML = "Cost: " + shortenNumbers(cost) + " (" + level + "/" + maxLevel + ")"
+}
+
 astroid.addEventListener("click", () => {
     crystalCount += perClick
-    crystals.innerHTML = "Crystals: " + crystalCount
+    crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
 })
 
 
 upgradebtn1.addEventListener("click", () => {
-    if (crystalCount >= cost1) {
+    if (level1 < maxUpgrades && crystalCount >= cost1) {
         crystalCount -= cost1
         perClick += 1
-        crystals.innerHTML = "Crystals: " + crystalCount
+        cost1 *= 2
+        level1 += 1
+        crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+        updateUpgradeDisplay(upgradeCost1, cost1, level1, maxUpgrades)
     }
 })
 
 upgradebtn2.addEventListener("click", () => {
-    if (crystalCount >= cost2) {
+    if (level2 < maxUpgrades && crystalCount >= cost2) {
         crystalCount -= cost2
         // Add passive income scaled by current income multiplier
         passiveIncome += 1 * incomeMultiplier
-        crystals.innerHTML = "Crystals: " + crystalCount
-        income.innerHTML = "Passive/sec: " + passiveIncome
+        cost2 *= 2
+        level2 += 1
+        crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+        updateUpgradeDisplay(upgradeCost2, cost2, level2, maxUpgrades)
+        income.innerHTML = "Passive/sec: " + shortenNumbers(passiveIncome)
     }
 })
 
 upgradebtn3.addEventListener("click", () => {
-    if (crystalCount >= cost3) {
+    if (level3 < maxUpgrades && crystalCount >= cost3) {
         crystalCount -= cost3
         base += 5
         perClick *= base
-        crystals.innerHTML = "Crystals: " + crystalCount
+        cost3 *= 2
+        level3 += 1
+        crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+        updateUpgradeDisplay(upgradeCost3, cost3, level3, maxUpgrades)
     }
 })
 
 upgradebtn4.addEventListener("click", () => {
-    if (crystalCount >= cost4) {
+    if (level4 < maxUpgrades && crystalCount >= cost4) {
         crystalCount -= cost4
         // Each drone adds 25 passive/sec, scaled by multiplier
         droneDmg += 25
         passiveIncome += 25 * incomeMultiplier
-        crystals.innerHTML = "Crystals: " + crystalCount
-        income.innerHTML = "Passive/sec: " + passiveIncome
+        cost4 *= 2
+        level4 += 1
+        crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+        updateUpgradeDisplay(upgradeCost4, cost4, level4, maxUpgrades)
+        income.innerHTML = "Passive/sec: " + shortenNumbers(passiveIncome)
     }
 })
 
 upgradebtn5.addEventListener("click", () => {
-    if (crystalCount >= cost5) {
+    if (level5 < maxUpgrades && crystalCount >= cost5) {
         crystalCount -= cost5
         // Double income multiplier and scale existing incomes
         incomeMultiplier *= 2
         perClick *= 2
         passiveIncome *= 2
-        crystals.innerHTML = "Crystals: " + crystalCount
-        income.innerHTML = "Passive/sec: " + passiveIncome
+        cost5 *= 2
+        level5 += 1
+        crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+        updateUpgradeDisplay(upgradeCost5, cost5, level5, maxUpgrades)
+        income.innerHTML = "Passive/sec: " + shortenNumbers(passiveIncome)
+    }
+})
+
+upgradebtn6.addEventListener("click", () => {
+    if (level6 < maxUpgrades6 && crystalCount >= cost6) {
+        crystalCount -= cost6
+        // Solar Core Reactor: Triple passive income and multiply perClick by 1.5x
+        passiveIncome *= 3
+        perClick *= 1.5
+        incomeMultiplier *= 1.25
+        cost6 *= 2
+        level6 += 1
+        crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+        updateUpgradeDisplay(upgradeCost6, cost6, level6, maxUpgrades6)
+        income.innerHTML = "Passive/sec: " + shortenNumbers(passiveIncome)
     }
 })
 
@@ -83,7 +146,8 @@ upgradebtn5.addEventListener("click", () => {
 setInterval(() => {
     if (passiveIncome > 0) {
         crystalCount += passiveIncome
-        crystals.innerHTML = "Crystals: " + crystalCount
-        income.innerHTML = "Passive/sec: " + passiveIncome
+        crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+        income.innerHTML = "Passive/sec: " + shortenNumbers(passiveIncome)
     }
 }, 1000)
+
