@@ -19,6 +19,9 @@ let cost2 = 250
 let cost3 = 750
 let cost4 = 2000
 let cost5 = 10000
+let base = 0
+let droneDmg = 0
+let incomeMultiplier = 1
 
 astroid.addEventListener("click", () => {
     crystalCount += perClick
@@ -37,12 +40,50 @@ upgradebtn1.addEventListener("click", () => {
 upgradebtn2.addEventListener("click", () => {
     if (crystalCount >= cost2) {
         crystalCount -= cost2
+        // Add passive income scaled by current income multiplier
+        passiveIncome += 1 * incomeMultiplier
         crystals.innerHTML = "Crystals: " + crystalCount
-        passiveIncome += 1
-        setInterval(() => {
-            crystalCount += 1
-            crystals.innerHTML = "Crystals: " + crystalCount
-            income.innerHTML = "Passive/sec: " + passiveIncome
-        },1000)
+        income.innerHTML = "Passive/sec: " + passiveIncome
     }
 })
+
+upgradebtn3.addEventListener("click", () => {
+    if (crystalCount >= cost3) {
+        crystalCount -= cost3
+        base += 5
+        perClick *= base
+        crystals.innerHTML = "Crystals: " + crystalCount
+    }
+})
+
+upgradebtn4.addEventListener("click", () => {
+    if (crystalCount >= cost4) {
+        crystalCount -= cost4
+        // Each drone adds 25 passive/sec, scaled by multiplier
+        droneDmg += 25
+        passiveIncome += 25 * incomeMultiplier
+        crystals.innerHTML = "Crystals: " + crystalCount
+        income.innerHTML = "Passive/sec: " + passiveIncome
+    }
+})
+
+upgradebtn5.addEventListener("click", () => {
+    if (crystalCount >= cost5) {
+        crystalCount -= cost5
+        // Double income multiplier and scale existing incomes
+        incomeMultiplier *= 2
+        perClick *= 2
+        passiveIncome *= 2
+        crystals.innerHTML = "Crystals: " + crystalCount
+        income.innerHTML = "Passive/sec: " + passiveIncome
+    }
+})
+
+// Single passive income ticker (prevents stacking intervals)
+setInterval(() => {
+    if (passiveIncome > 0) {
+        crystalCount += passiveIncome
+        crystals.innerHTML = "Crystals: " + crystalCount
+        income.innerHTML = "Passive/sec: " + passiveIncome
+    }
+}, 1000)

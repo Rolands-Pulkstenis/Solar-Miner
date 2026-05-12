@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    border-radius: 10px;
 }
 body{
     background-color:rgb(216, 216, 216);
@@ -13,6 +14,7 @@ nav{
     padding:25px;
     align-items: center;
     height: 5rem;
+    border-radius: 0;
 }
 main{
     margin:50px 20px;
@@ -29,10 +31,13 @@ main{
     align-items: center;
     width: 45%;
     border: 2px grey solid;
-    height: 60vh;
+    height: 60vh;   
 }
 #astroid:hover{
     cursor: pointer;
+}
+#mainAstroid img{
+    animation: rotation 25s linear infinite;
 }
 #shop{
     display: flex;
@@ -47,6 +52,7 @@ main{
     display: flex;
     justify-content: center;
     border-bottom: grey 2px solid;
+    border-radius: 0;
     width: 100%;
 }
 #upgrades{
@@ -61,7 +67,8 @@ main{
 #upgrade2,
 #upgrade3,
 #upgrade4,
-#upgrade5{
+#upgrade5,
+#upgrade6{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -76,7 +83,8 @@ main{
 #upgrade2 h3,
 #upgrade3 h3,
 #upgrade4 h3,
-#upgrade5 h3{
+#upgrade5 h3,
+#upgrade6 h3{
     margin: 0;
     white-space: nowrap;
 }
@@ -84,11 +92,22 @@ main{
 #upgrade2 button,
 #upgrade3 button,
 #upgrade4 button,
-#upgrade5 button{
+#upgrade5 button,
+#upgrade6 button{
     margin-left: auto;
-    width: 70px;
+    width: 80px;
     height: 25px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 button:hover{
     cursor: pointer;
+    scale: 1.1;
+}
+
+@keyframes rotation{
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
