@@ -17,9 +17,9 @@ img, svg {
 /* Local self-hosted Clash Display (only Medium used) */
 @font-face {
     font-family: 'Clash Display';
-    src: url('ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.woff2') format('woff2'),
-         url('ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.woff') format('woff'),
-         url('ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.ttf') format('truetype');
+    src: url('fonts/ClashDisplay-Medium.woff2') format('woff2'),
+         url('fonts/ClashDisplay-Medium.woff') format('woff'),
+         url('fonts/ClashDisplay-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
