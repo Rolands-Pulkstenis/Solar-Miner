@@ -184,6 +184,18 @@ h3 {
     color: #dbe4ff;
 }
 
+#muteBtn {
+    min-width: 80px;
+    padding: 7px 12px;
+    border: 1px solid #e4f0f6;
+    background: #141c29;
+    color: #e4f0f6;
+    border-radius: 10px;
+    font-family: 'Clash Display', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
 #mainAstroid h3 {
     color: #cbd5e1;
 }

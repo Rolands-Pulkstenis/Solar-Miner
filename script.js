@@ -1,6 +1,9 @@
 let crystals = document.getElementById("crystalDisplay")
 let income = document.getElementById("passiveIncome")
 const astroid = document.getElementById("astroid")
+const rockBreakSound = document.getElementById("rockBreakSound")
+const bgMusic = document.getElementById("bgMusic")
+const muteBtn = document.getElementById("muteBtn")
 let upgradeCost1 = document.getElementById("cost1")
 let upgradeCost2 = document.getElementById("cost2")
 let upgradeCost3 = document.getElementById("cost3")
@@ -33,6 +36,9 @@ let level6 = 0
 let base = 0
 let droneDmg = 0
 let incomeMultiplier = 1
+let soundTimeout = null
+
+bgMusic.volume = 0.1
 
 function shortenNumbers(num) {
     if (num >= 1000000000) {
@@ -42,7 +48,7 @@ function shortenNumbers(num) {
         return (num / 1000000).toFixed(2) + "M"
     }
     if (num >= 1000) {
-        return (num / 1000).toFixed(0) + "K"
+        return (num / 1000).toFixed(2) + "K"
     }
     return num
 }
@@ -59,6 +65,16 @@ function updateUpgradeDisplay(costElement, cost, level, maxLevel) {
 astroid.addEventListener("click", () => {
     crystalCount += perClick
     crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
+    
+    // Play rock breaking sound
+    clearTimeout(soundTimeout)
+    rockBreakSound.currentTime = 0
+    rockBreakSound.volume = 0.02
+    rockBreakSound.play()
+    // Stop sound after 1 second
+    soundTimeout = setTimeout(() => {
+        rockBreakSound.pause()
+    }, 1000)
 })
 
 
@@ -150,4 +166,15 @@ setInterval(() => {
         income.innerHTML = "Passive/sec: " + shortenNumbers(passiveIncome)
     }
 }, 1000)
+
+// Mute button functionality
+muteBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+        bgMusic.play()
+        muteBtn.innerHTML = "🔊 Music"
+    } else {
+        bgMusic.pause()
+        muteBtn.innerHTML = "🔇 Muted"
+    }
+})
 
