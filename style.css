@@ -2,12 +2,40 @@
     box-sizing: border-box;
 }
 
+/* Disable text selection and dragging across the page */
+html, body, * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+img, svg {
+    -webkit-user-drag: none;
+}
+
+/* Local self-hosted Clash Display (only Medium used) */
+@font-face {
+    font-family: 'Clash Display';
+    src: url('ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.woff2') format('woff2'),
+         url('ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.woff') format('woff'),
+         url('ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #05070b;
-    color: #e5e7eb;
+    font-family: 'Clash Display', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    background: linear-gradient(#000b18, #007486);
+    color: #e4f0f6;
     overflow-y: hidden;
+}
+h1, h2, h3, h4, h5, h6, #name {
+    font-family: 'Clash Display', Arial, Helvetica, sans-serif;
+    font-weight: 500;
 }
 
 nav {
@@ -15,7 +43,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 24px;
-    background: rgba(10, 14, 22, 0.92);
+    background:#141c29;
     border-bottom: 1px solid #2b3241;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
@@ -44,7 +72,7 @@ main {
 
 #mainAstroid,
 #shop {
-    background: #101722;
+    background: linear-gradient(#00333b,#000b18);
     border: 1px solid #2c3444;
     box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
     border-radius: 14px;
@@ -81,6 +109,7 @@ main {
     padding: 18px 20px;
     border-bottom: 1px solid #2c3444;
     background: #141c29;
+    border-radius: 10px 10px 0 0 ;
 }
 
 #upgrades {
@@ -124,9 +153,9 @@ main {
     margin-left: auto;
     min-width: 80px;
     padding: 7px 12px;
-    border: 1px solid #5b6477;
-    background: #31394a;
-    color: #f5f7fb;
+    border: 1px solid #e4f0f6;
+    background: #141c29;
+    color: #e4f0f6;
     border-radius: 10px;
 }
 
