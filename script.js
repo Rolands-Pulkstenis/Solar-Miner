@@ -18,7 +18,7 @@ const upgradebtn5 = document.getElementById("upgradeBtn5")
 const upgradebtn6 = document.getElementById("upgradeBtn6")
 let crystalCount = 0
 let passiveIncome = 0
-let perClick = 1
+let perClick = 100000000000
 let cost1 = 50
 let cost2 = 250
 let cost3 = 750
@@ -62,16 +62,15 @@ function updateUpgradeDisplay(costElement, cost, level, maxLevel) {
     costElement.innerHTML = "Cost: " + shortenNumbers(cost) + " (" + level + "/" + maxLevel + ")"
 }
 
+
 astroid.addEventListener("click", () => {
     crystalCount += perClick
     crystals.innerHTML = "Crystals: " + shortenNumbers(crystalCount)
     
-    // Play rock breaking sound
     clearTimeout(soundTimeout)
     rockBreakSound.currentTime = 0
     rockBreakSound.volume = 0.02
     rockBreakSound.play()
-    // Stop sound after 1 second
     soundTimeout = setTimeout(() => {
         rockBreakSound.pause()
     }, 1000)
@@ -92,7 +91,6 @@ upgradebtn1.addEventListener("click", () => {
 upgradebtn2.addEventListener("click", () => {
     if (level2 < maxUpgrades && crystalCount >= cost2) {
         crystalCount -= cost2
-        // Add passive income scaled by current income multiplier
         passiveIncome += 1 * incomeMultiplier
         cost2 *= 2
         level2 += 1
@@ -117,7 +115,6 @@ upgradebtn3.addEventListener("click", () => {
 upgradebtn4.addEventListener("click", () => {
     if (level4 < maxUpgrades && crystalCount >= cost4) {
         crystalCount -= cost4
-        // Each drone adds 25 passive/sec, scaled by multiplier
         droneDmg += 25
         passiveIncome += 25 * incomeMultiplier
         cost4 *= 2
@@ -131,7 +128,6 @@ upgradebtn4.addEventListener("click", () => {
 upgradebtn5.addEventListener("click", () => {
     if (level5 < maxUpgrades && crystalCount >= cost5) {
         crystalCount -= cost5
-        // Double income multiplier and scale existing incomes
         incomeMultiplier *= 2
         perClick *= 2
         passiveIncome *= 2
@@ -146,7 +142,6 @@ upgradebtn5.addEventListener("click", () => {
 upgradebtn6.addEventListener("click", () => {
     if (level6 < maxUpgrades6 && crystalCount >= cost6) {
         crystalCount -= cost6
-        // Solar Core Reactor: Triple passive income and multiply perClick by 1.5x
         passiveIncome *= 3
         perClick *= 1.5
         incomeMultiplier *= 1.25
@@ -158,7 +153,7 @@ upgradebtn6.addEventListener("click", () => {
     }
 })
 
-// Single passive income ticker (prevents stacking intervals)
+
 setInterval(() => {
     if (passiveIncome > 0) {
         crystalCount += passiveIncome
@@ -167,7 +162,6 @@ setInterval(() => {
     }
 }, 1000)
 
-// Mute button functionality
 muteBtn.addEventListener("click", () => {
     if (bgMusic.paused) {
         bgMusic.play()
@@ -177,4 +171,3 @@ muteBtn.addEventListener("click", () => {
         muteBtn.innerHTML = "🔇 Muted"
     }
 })
-
