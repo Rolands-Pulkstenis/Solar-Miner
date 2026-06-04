@@ -231,8 +231,11 @@ earthBtn.addEventListener("click", () => {
         updateUpgradeDisplay(upgradeCost5, cost5, level5, maxUpgrades)
         updateUpgradeDisplay(upgradeCost6, cost6, level6, maxUpgrades6)
         img.src = "images/earthImg.png"
+        document.body.style.background = "linear-gradient(#00b12c, #00190d)"
         document.getElementById("eq2").style.display = "block"
         document.getElementById("eq2Cost").style.display = "block"
+        document.getElementById("shop").style.background = "linear-gradient(to bottom, #003d24, #00b12c)"
+        document.getElementById("mainAstroid").style.background = "linear-gradient(to bottom, #003d24, #00b12c)"
     }
     else if (earthBtnPurchased === true) {
             alert("You already have this planet!")
